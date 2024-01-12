@@ -4,11 +4,13 @@
 from django.db import models
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
+from django.contrib.contenttypes.fields import GenericRelation
 
 # --------------------------------------------------------------
 # Project imports
 # --------------------------------------------------------------
 from blog.models import Tag
+from blog.models import Comment
 
 
 class Post(models.Model):
@@ -21,6 +23,7 @@ class Post(models.Model):
     summary = models.TextField(_("summary"),max_length=500)
     content = models.TextField(_("content"),)
     tags = models.ManyToManyField(Tag, related_name="posts")
+    comments = GenericRelation(Comment)
 
     def __str__(self):
         return self.title
