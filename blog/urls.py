@@ -5,5 +5,7 @@ app_name = "ecommerce"
 
 urlpatterns = [
   # ext: ""
-  path("", views.index),
+  path("", views.index, name="posts-index"),
+  path("post/<slug>/", views.post_detail, name="blog-post-detail"),
+
 ]
