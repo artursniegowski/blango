@@ -4,6 +4,9 @@ from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 from blog.models import Post 
 from django.utils import timezone
+import logging
+
+logger = logging.getLogger(__name__)
 
 User_Model = get_user_model()
 
@@ -95,4 +98,5 @@ def endcol():
 @register.inclusion_tag("blog/post-list.html")
 def recent_posts(post: Post):
     most_recent_posts = Post.objects.exclude(pk=post.pk)[:5]
+    logger.debug("Loaded %d recent posts for post %d", len(most_recent_posts), post.pk)
     return {"title": "Recent Posts", "posts": most_recent_posts}
