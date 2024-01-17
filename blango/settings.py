@@ -31,7 +31,9 @@ class Dev(Configuration):
     DEBUG = True
 
     ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0", ".codio.io"])
-
+    
+    # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
+    INTERNAL_IPS = ["192.168.11.179"]
 
 
     # Application definition
@@ -45,9 +47,11 @@ class Dev(Configuration):
         "blog",
         "crispy_forms",
         "crispy_bootstrap5",
+        "debug_toolbar",
     ]
 
     MIDDLEWARE = [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -204,6 +208,8 @@ class Dev(Configuration):
     # you might have noticed that admin users will receive an email 
     # alert when an exception occurs (provided you’ve configured Django’s SMTP settings correctly too).
     # ADMINS = [("Test tester", "tester@no-reply.com")]
+
+
 
 class Prod(Dev):
     DEBUG = values.BooleanValue(True)

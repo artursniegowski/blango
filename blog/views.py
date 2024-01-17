@@ -16,7 +16,18 @@ def index(request: HttpRequest) -> HttpResponse:
     # from django.http import HttpResponse
     # logger.debug("Index function is called!")
     # return HttpResponse(str(request.user).encode("ascii"))
-    posts = Post.objects.filter(published_at__lte=timezone.now())
+    # optimizing the queries, so we dont have to make seperate queries for each post
+    # we can query right away all the realted ones
+    posts = (Post.objects.filter(published_at__lte=timezone.now()).select_related("author"))
+    # defering the colums we dotn use, that way we dont fetch the data we dont use
+    # posts = (Post.objects.filter(published_at__lte=timezone.now()).select_related("author").defer("created_at", "modified_at"))
+    # same as
+    # fetich only the columns we use
+    # posts = (
+    # Post.objects.filter(published_at__lte=timezone.now())
+    # .select_related("author")
+    # .only("title", "summary", "content", "author", "published_at", "slug")
+    # )
     logger.debug("Got %d posts", len(posts))
     return render(request, 'blog/index.html', {"posts": posts})
 
@@ -37,3 +48,6 @@ def post_detail(request: HttpRequest, slug: str) -> HttpResponse:
     else:
         comment_form = None
     return render(request, "blog/post-detail.html", {"post": post, "comment_form": comment_form})
+
+def get_ip(request: HttpRequest):
+    return HttpResponse(request.META['REMOTE_ADDR'])
