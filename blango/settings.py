@@ -44,6 +44,7 @@ class Dev(Configuration):
         "django.contrib.sessions",
         "django.contrib.messages",
         "django.contrib.staticfiles",
+        "blango_auth",
         "blog",
         "crispy_forms",
         "crispy_bootstrap5",
@@ -209,7 +210,8 @@ class Dev(Configuration):
     # alert when an exception occurs (provided you’ve configured Django’s SMTP settings correctly too).
     # ADMINS = [("Test tester", "tester@no-reply.com")]
 
-
+    # custom user model
+    AUTH_USER_MODEL = "blango_auth.User"
 
 class Prod(Dev):
     DEBUG = values.BooleanValue(True)
