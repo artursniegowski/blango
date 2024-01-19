@@ -24,6 +24,7 @@ What you'll learn:
   - Custom User model
   - Two-step activation / registration with Django
   - Django Allauth, user authentication, registration, and account management, social account integration and email confirmation
+  - Custom Django management command
 
 ---
 
@@ -33,13 +34,12 @@ Skills:
 
 ---
 
-Code and run Django websites without installing anything!
+This project is designed for learners who are familiar with Python and have basic Django skills. This project covers a review of core Django concepts, advanced projects setups, class-based views, and other advanced topics such as proxy models, loggin, caching, and query optimization.
 
-This course is designed for learners who are familiar with Python and basic Django skills (similar to those covered in the Django for Everybody specialization). The modules in this course cover a review of core Django concepts, advanced projects setups, class-based views, and other advanced topics such as proxy models, loggin, caching, and query optimization.
 
-To allow for a truly hands-on, self-paced learning experience, this course is video-free. Assignments contain short explanations with images and runnable code examples with suggested edits to explore code examples further, building a deeper understanding by doing. You’ll benefit from instant feedback from a variety of assessment items along the way, gently progressing from quick understanding checks (multiple choice, fill in the blank, and un-scrambling code blocks) to slowly building features, resulting in large coding projects at the end of the course.
-
-Course Learning Objectives: 
-Initialize Django Advanced Project Setup and explain the benefits in terms of integration and security
-Describe different Class-Based Views and their use cases
-Diagnose and optimize code performance using logging, caching, and query optimization
+Objectives:
+Learn about advanced Django concepts.
+Learn about advanced project setup in Django.
+Explore the benefits of integration and security using Django.
+Understand different Class-Based Views and their use cases.
+Develop skills to diagnose and optimize code performance using logging, caching, and query optimization.
