@@ -212,6 +212,14 @@ class Dev(Configuration):
 
     # custom user model
     AUTH_USER_MODEL = "blango_auth.User"
+    
+    # https://docs.djangoproject.com/en/3.2/topics/email/#file-backend
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    # for the two step email registration
+    ACCOUNT_ACTIVATION_DAYS = 7
+    # deciding when the server can accept registration requests
+    # REGISTRATION_OPEN = False
+
 
 class Prod(Dev):
     DEBUG = values.BooleanValue(True)
