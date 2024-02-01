@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django_registration.backends.activation.views import RegistrationView
 from blango_auth.forms import BlangoRegistrationForm
+import debug_toolbar
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,9 +31,10 @@ urlpatterns = [
         name="django_registration_register",
     ),
     path("accounts/", include("django_registration.backends.activation.urls")),
+    path("accounts/", include("allauth.urls")),
 ]
 
 if settings.DEBUG:
     urlpatterns += [
-        path("__debug__/", include("debug_toolbar.urls")),
+        path("__debug__/", include(debug_toolbar.urls)),
     ]
