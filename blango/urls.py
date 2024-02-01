@@ -23,6 +23,7 @@ import debug_toolbar
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls', namespace='blog')),
+    path("api/v1/", include("blog.api_urls")),
     path('accounts/', include('blango_auth.urls', namespace='blango_auth')),
     path('accounts/', include('django.contrib.auth.urls')),
     path(

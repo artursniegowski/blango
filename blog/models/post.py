@@ -19,7 +19,7 @@ class Post(models.Model):
     modified_at = models.DateTimeField(auto_now=True)
     published_at = models.DateTimeField(blank=True, null=True, db_index=True)
     title = models.TextField(_("title"),max_length=100)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     summary = models.TextField(_("summary"),max_length=500)
     content = models.TextField(_("content"),)
     tags = models.ManyToManyField(Tag, related_name="posts")
