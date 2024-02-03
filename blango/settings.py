@@ -55,6 +55,7 @@ class Dev(Configuration):
         "allauth.socialaccount.providers.google",
         "debug_toolbar",
         "rest_framework",
+        "rest_framework.authtoken",
     ]
 
     MIDDLEWARE = [
@@ -236,6 +237,14 @@ class Dev(Configuration):
     ACCOUNT_USERNAME_REQUIRED = False
     ACCOUNT_AUTHENTICATION_METHOD = "email"
 
+    # settings fro rest framework
+    REST_FRAMEWORK = {
+        "DEFAULT_AUTHENTICATION_CLASSES": [
+            "rest_framework.authentication.BasicAuthentication",
+            "rest_framework.authentication.SessionAuthentication",
+            "rest_framework.authentication.TokenAuthentication",
+        ]
+    }
 
 class Prod(Dev):
     DEBUG = values.BooleanValue(True)
