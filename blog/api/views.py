@@ -3,7 +3,7 @@ from rest_framework.authentication import SessionAuthentication
 from blog.api.permissions import AuthorModifyOrReadOnly, IsAdminUserForObject
 from rest_framework.permissions import IsAdminUser
 
-from blog.api.serializers import PostSerializer, UserSerializer
+from blog.api.serializers import PostSerializer, UserSerializer, PostDetailSerializer
 from blog.models import Post
 
 from django.contrib.auth import get_user_model
@@ -22,7 +22,7 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = [AuthorModifyOrReadOnly | IsAdminUser]
     permission_classes = [AuthorModifyOrReadOnly | IsAdminUserForObject]
     queryset = Post.objects.all()
-    serializer_class = PostSerializer
+    serializer_class = PostDetailSerializer
 
 
 class UserDetail(generics.RetrieveAPIView):
