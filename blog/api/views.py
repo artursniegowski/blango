@@ -3,9 +3,12 @@ from rest_framework.authentication import SessionAuthentication
 from blog.api.permissions import AuthorModifyOrReadOnly, IsAdminUserForObject
 from rest_framework.permissions import IsAdminUser
 
-from blog.api.serializers import PostSerializer
+from blog.api.serializers import PostSerializer, UserSerializer
 from blog.models import Post
 
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class PostList(generics.ListCreateAPIView):
     # override the default authentication classes on a per-view basis
@@ -20,3 +23,9 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [AuthorModifyOrReadOnly | IsAdminUserForObject]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+    lookup_field = "email"
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
