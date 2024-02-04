@@ -2,13 +2,18 @@
 
 ---
 
-A repository containing all the assignments completed from: https://www.coursera.org/learn/codio-advanced-django-building-blog/
+A repository containing all the assignments completed from 
+Advanced Django: Mastering Django and Django Rest Framework Specialization:   https://www.coursera.org/specializations/codio-advanced-django-and-django-rest-framework 
+1. Advanced Django: Building a Blog   https://www.coursera.org/learn/codio-advanced-django-building-blog?specialization=codio-advanced-django-and-django-rest-framework 
+2. Advanced Django: Introduction to Django Rest Framework   https://www.coursera.org/learn/codio-advanced-django-intro-drf?specialization=codio-advanced-django-and-django-rest-framework  
+3. Advanced Django: Advanced Django Rest Framework   https://www.coursera.org/learn/codio-advanced-django-advanced-drf?specialization=codio-advanced-django-and-django-rest-framework 
+4. Advanced Django: External APIs and Task Queuing   https://www.coursera.org/learn/codio-advanced-django-external-apis-task-queuing?specialization=codio-advanced-django-and-django-rest-framework 
 
 
 ---
 
 
-What you'll learn:
+## What you'll learn (1. Advanced Django: Building a Blog) : 
   - Create custom filters and templates
   - Optimize performance through caching and optimizing database operations
   - Authenticate users with Google
@@ -24,17 +29,11 @@ What you'll learn:
   - Custom User model
   - Two-step activation / registration with Django
   - Django Allauth, user authentication, registration, and account management, social account integration and email confirmation
-  - Custom Django management command
+  - Custom Django management command 
 
----
 
-Skills:
-  - Django (Web Framework)
-  - Python Programming
-
----
-
-This project is designed for learners who are familiar with Python and have basic Django skills. This project covers a review of core Django concepts, advanced projects setups, class-based views, and other advanced topics such as proxy models, loggin, caching, and query optimization.
+This project is designed for learners who are familiar with Python and have basic Django skills. This project covers a review of core Django concepts, 
+advanced projects setups, class-based views, and other advanced topics such as proxy models, loggin, caching, and query optimization.
 
 
 Objectives:
@@ -43,3 +42,56 @@ Learn about advanced project setup in Django.
 Explore the benefits of integration and security using Django.
 Understand different Class-Based Views and their use cases.
 Develop skills to diagnose and optimize code performance using logging, caching, and query optimization.
+
+
+---
+
+
+## What you'll learn (2. Advanced Django: Introduction to Django Rest Framework) :
+  - Build an API with Django Rest Framework
+  - Use Postman to explore the API (with env variables)
+  - Add functionality with serializers, viewsets, routers, authentication, and permissions
+  - Explain how GET, POST, PUT, and DELETE work with the Post pattern
+  - Explain the importance of the JsonResponse and HttpResponse classes
+  - Deserialize JSON data
+  - Differentiate a ModelSerializer from a Serializer
+  - Create generic views 
+  - Load the API in the DRF GUI
+  - Token authentication and more
+  - Custom permissions
+  - Related fields, PrimaryKeyRelatedField, StringRelatedField, SlugRelatedField, and HyperlinkRelatedField
+  - Nested relationship
+  - Swagger UI - documentaion
+  - Viewset. Modelviewset vs Viewset. Router. Extra actions in a Viewset.
+
+
+The modules in this course cover an introduction to the the Django REST framework and handling JSON within the context of APIs, fundamentals such as serialization ViewSheets, and authentication/permissions.
+
+Course Learning Objectives:
+Describe how the Django REST framework allows Django websites to leverage APIs
+Apply the Django REST framework
+Leverage ViewSets to map views to logic
+Setup authentication and configure permissions
+
+
+---
+
+## What you'll learn (3. Advanced Django: Advanced Django Rest Framework) :
+
+
+---
+
+## What you'll learn (4. Advanced Django: External APIs and Task Queuing) :
+
+
+---
+
+
+
+Skills:
+  - Django (Web Framework)
+  - Django REST framework (DRF)
+  - Python Programming
+
+---
+
