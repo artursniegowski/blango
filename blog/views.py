@@ -51,3 +51,7 @@ def post_detail(request: HttpRequest, slug: str) -> HttpResponse:
 
 def get_ip(request: HttpRequest):
     return HttpResponse(request.META['REMOTE_ADDR'])
+
+# a view to show how to add javascript to a file
+def post_table(request):
+    return render(request, "blog/post-table.html")
