@@ -13,6 +13,12 @@ from blog.api.serializers import (
   )
 from blog.models import Post, Tag
 
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_headers, vary_on_cookie
+
+from rest_framework.exceptions import PermissionDenied
+
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -42,12 +48,39 @@ class PostViewSet(viewsets.ModelViewSet):
             return PostSerializer
         return PostDetailSerializer
 
+    # caching /posts/mine   for 5 mins
+    # you porbably only want to cache the get all, and get detail request, bc in most casses 
+    # ther is no reason to cache views/requests that change something like the put, post, delete ...
+    # We also add the caching and vary decorators, so that the response 
+    # is cached individually for each user, whether they access by session authentication 
+    # (Cookie header) or Authorization header.
+    @method_decorator(cache_page(300))
+    @method_decorator(vary_on_headers("Authorization"))
+    @method_decorator(vary_on_cookie)
+    @action(methods=["get"], detail=False, name="Posts by the logged in user")
+    def mine(self, request):
+        if request.user.is_anonymous:
+            raise PermissionDenied("You must be logged in to see which Posts are yours")
+        posts = self.get_queryset().filter(author=request.user)
+        serializer = PostSerializer(posts, many=True, context={"request": request})
+        return Response(serializer.data)
+
+    # cache the list of Posts for two minutes, which means overriding the list() view
+    @method_decorator(cache_page(120))
+    def list(self, *args, **kwargs):
+        return super().list(*args, **kwargs)
+
 
 
 class UserDetail(generics.RetrieveAPIView):
     lookup_field = "email"
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    # caching the get request thsi is why we have to define the method here
+    @method_decorator(cache_page(300))
+    def get(self, *args, **kwargs):
+        return super().get(*args, *kwargs)
 
 
 class TagViewSet(viewsets.ModelViewSet):
@@ -61,3 +94,12 @@ class TagViewSet(viewsets.ModelViewSet):
             tag.posts, many=True, context={"request": request}
         )
         return Response(post_serializer.data)
+
+    # adding both mehtods that we will be caching
+    @method_decorator(cache_page(300))
+    def list(self, *args, **kwargs):
+        return super(TagViewSet, self).list(*args, **kwargs)
+
+    @method_decorator(cache_page(300))
+    def retrieve(self, *args, **kwargs):
+        return super(TagViewSet, self).retrieve(*args, **kwargs)
