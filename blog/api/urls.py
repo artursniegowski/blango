@@ -50,4 +50,10 @@ urlpatterns += [
     ),
     # routers urls for the viewsets
     path("", include(router.urls)),
+    # for the filtering
+    path(
+        "posts/by-time/<str:period_name>/",
+        PostViewSet.as_view({"get": "list"}),
+        name="posts-by-time",
+    ),
 ]

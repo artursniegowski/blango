@@ -19,6 +19,11 @@ from django.views.decorators.vary import vary_on_headers, vary_on_cookie
 
 from rest_framework.exceptions import PermissionDenied
 
+from django.db.models import Q
+from django.utils import timezone
+from datetime import timedelta
+from django.http import Http404
+
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -48,6 +53,43 @@ class PostViewSet(viewsets.ModelViewSet):
             return PostSerializer
         return PostDetailSerializer
 
+    def get_queryset(self):
+        if self.request.user.is_anonymous:
+            # published only
+            queryset = self.queryset.filter(published_at__lte=timezone.now())
+        elif self.request.user.is_staff:
+            # allow all
+            queryset = self.queryset
+        else:
+            # filter for own or
+            queryset = self.queryset.filter(
+                Q(published_at__lte=timezone.now()) | Q(author=self.request.user)
+            )
+
+        # adding the filtering based on the passed argument
+        time_period_name = self.kwargs.get("period_name")
+        
+        if not time_period_name:
+            # no further filtering required
+            return queryset
+
+        if time_period_name == "new":
+            return queryset.filter(
+                published_at__gte=timezone.now() - timedelta(hours=1)
+            )
+        elif time_period_name == "today":
+            return queryset.filter(
+                published_at__date=timezone.now().date(),
+            )
+        elif time_period_name == "week":
+            return queryset.filter(published_at__gte=timezone.now() - timedelta(days=7))
+        else:
+            raise Http404(
+                f"Time period {time_period_name} is not valid, should be "
+                f"'new', 'today' or 'week'"
+            )
+
+
     # caching /posts/mine   for 5 mins
     # you porbably only want to cache the get all, and get detail request, bc in most casses 
     # ther is no reason to cache views/requests that change something like the put, post, delete ...
@@ -66,7 +108,10 @@ class PostViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     # cache the list of Posts for two minutes, which means overriding the list() view
+    # we add the second decororator with varry on headers / Authorization / Cookie
+    # bc we have overwritten the get_queryset, the list of Posts now changes with each user, we need to make sure we add the vary_on_headers()
     @method_decorator(cache_page(120))
+    @method_decorator(vary_on_headers("Authorization", "Cookie"))
     def list(self, *args, **kwargs):
         return super().list(*args, **kwargs)
 
