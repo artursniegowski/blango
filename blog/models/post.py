@@ -6,6 +6,9 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.contrib.contenttypes.fields import GenericRelation
 
+## third party imports
+from versatileimagefield.fields import VersatileImageField, PPOIField
+
 # --------------------------------------------------------------
 # Project imports
 # --------------------------------------------------------------
@@ -24,6 +27,10 @@ class Post(models.Model):
     content = models.TextField(_("content"),)
     tags = models.ManyToManyField(Tag, related_name="posts")
     comments = GenericRelation(Comment)
-
+    hero_image = VersatileImageField(
+        upload_to="hero_images", ppoi_field="ppoi", null=True, blank=True
+    )
+    ppoi = PPOIField(null=True, blank=True)
+    
     def __str__(self):
         return self.title

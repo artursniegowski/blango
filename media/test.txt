@@ -1,0 +1,1 @@
+check that media serving is set up correctly by adding this file
