@@ -77,7 +77,31 @@ Setup authentication and configure permissions
 ---
 
 ## What you'll learn (3. Advanced Django: Advanced Django Rest Framework) :
+  - Optimize the Django Rest Framework
+  - Writing tests for the API with live server tests
+  - Integrate with ReactJS
+  - caching (Vary on both headers and cookies)
+  - caching with generic views and viewsets
+  - throttling, Scope throttling with burst and sustained rates
+  - user-based filter, url-based filtering, and query parameter filtering
+  - pagination
+  - django-filter
+  - JWT authentication
+  - django-versatileimagefield (thumbnail, image serializer)
+  - JavaScript (VAriables, Functions, Classes, Promises)
+  - Add React to a Django website
+  - JSX (Babel)
+  - Fetch data from Django API with React
+  - React Hooks
 
+
+The modules in this course cover testing, performance considerations such as caching and throttling, use of 3rd party libraries, and integrating frontends within the context of the Django REST framework.
+Course Learning Objectives: 
+
+Write and run tests on Django applications
+Optimize code performance using caching, throttling, and filtering
+Use a 3rd Party library
+Integrate with common Frontends
 
 ---
 
@@ -92,6 +116,8 @@ Skills:
   - Django (Web Framework)
   - Django REST framework (DRF)
   - Python Programming
+  - React (Web Framework)
+  - JavaScript
 
 ---
 

@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.utils import timezone
 from blog.models import Post
 from blog.forms import CommentForm
+from django.urls import reverse
 # from django.views.decorators.cache import cache_page
 # from django.views.decorators.vary import vary_on_headers, vary_on_cookie
 import logging
@@ -54,4 +55,4 @@ def get_ip(request: HttpRequest):
 
 # a view to show how to add javascript to a file
 def post_table(request):
-    return render(request, "blog/post-table.html")
+    return render(request, "blog/post-table.html", {"post_list_url": reverse("post-list")})
