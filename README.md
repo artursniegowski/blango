@@ -7,7 +7,6 @@ Advanced Django: Mastering Django and Django Rest Framework Specialization: <br>
 1. Advanced Django: Building a Blog  <br>  https://www.coursera.org/learn/codio-advanced-django-building-blog?specialization=codio-advanced-django-and-django-rest-framework <br>
 2. Advanced Django: Introduction to Django Rest Framework <br>  https://www.coursera.org/learn/codio-advanced-django-intro-drf?specialization=codio-advanced-django-and-django-rest-framework   <br>
 3. Advanced Django: Advanced Django Rest Framework <br>  https://www.coursera.org/learn/codio-advanced-django-advanced-drf?specialization=codio-advanced-django-and-django-rest-framework <br>
-4. Advanced Django: External APIs and Task Queuing  <br> https://www.coursera.org/learn/codio-advanced-django-external-apis-task-queuing?specialization=codio-advanced-django-and-django-rest-framework <br>
 
 
 ---
@@ -102,10 +101,6 @@ Write and run tests on Django applications
 Optimize code performance using caching, throttling, and filtering
 Use a 3rd Party library
 Integrate with common Frontends
-
----
-
-## What you'll learn (4. Advanced Django: External APIs and Task Queuing) :
 
 
 ---
